@@ -1,4 +1,4 @@
-package com.soundink.jigumerchant;
+package com.soar.city;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class MainActivity extends Activity{
         webView.getSettings().setJavaScriptEnabled(true);//设置使用够执行JS脚本  
         webView.getSettings().setBuiltInZoomControls(false);
 
-        webView.loadUrl("http://inkash.test.soundink.net/");  
+        webView.loadUrl("http://yuxian.me/");  
         webView.setWebViewClient(new WebViewClient(){  
             @Override  
             public boolean shouldOverrideUrlLoading(WebView view, String url) {  
