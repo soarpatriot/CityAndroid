@@ -15,6 +15,7 @@
         android:theme="@android:style/Theme.NoTitleBar">
         <activity
             android:name="com.soar.city.MainActivity"
+            android:icon="@drawable/logo"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
