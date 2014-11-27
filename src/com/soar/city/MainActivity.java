@@ -2,19 +2,25 @@ package com.soar.city;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class MainActivity extends Activity{
       
 	private WebView webView;  
 	private ValueCallback<Uri> mUploadMessage;
+    private ProgressBar circleProgressBar;  
+    private LinearLayout loadeyLayout;
 	private final static int FILECHOOSER_RESULTCODE = 1;
 	
 	@Override  
@@ -22,12 +28,29 @@ public class MainActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		webView = (WebView) findViewById(R.id.merchant_staff);  
-        
+		loadeyLayout = (LinearLayout)findViewById(R.id.fullscreen_loading_indicator);  
+		
         webView.getSettings().setJavaScriptEnabled(true);//设置使用够执行JS脚本  
         webView.getSettings().setBuiltInZoomControls(false);
         webView.setWebChromeClient(new MyWebClient());
         webView.loadUrl("http://www.yuxian.me/");  
-        webView.setWebViewClient(new WebViewClient(){  
+        webView.setWebViewClient(new WebViewClient(){
+        	
+        	@Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                // TODO Auto-generated method stub
+        		loadeyLayout.setVisibility(View.VISIBLE);  
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                // TODO Auto-generated method stub
+            	loadeyLayout.setVisibility(View.GONE);  
+                super.onPageFinished(view, url);
+
+                
+            }
             @Override  
             public boolean shouldOverrideUrlLoading(WebView view, String url) {  
                 // TODO Auto-generated method stub  

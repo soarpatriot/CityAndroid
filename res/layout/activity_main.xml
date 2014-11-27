@@ -1,12 +1,45 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:id="@+id/home"
+	    tools:context=".MainActivity" >
+	
+	    <WebView  
+	        android:id="@+id/merchant_staff"  
+	        android:layout_width="match_parent"  
+	        android:layout_height="match_parent" />  
+	        
+	    
+	
+	</RelativeLayout>
+    <LinearLayout
+	    android:gravity="center_vertical|center_horizontal"
+	    android:orientation="horizontal"
+	    android:id="@+id/fullscreen_loading_indicator"
+	    android:visibility="gone"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    >
+    	<ProgressBar   
+	         android:id="@+id/circleProgressBar"    
+	         android:layout_gravity="center_vertical|center_horizontal"
+	         
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	          />  
 
-    <WebView  
-        android:id="@+id/merchant_staff"  
-        android:layout_width="match_parent"  
-        android:layout_height="match_parent" />  
-
-</RelativeLayout>
+	    <TextView
+	        android:id="@+id/current_action"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="5.0dip"
+	        android:text="@string/loading">
+	    </TextView>
+	</LinearLayout>
+	
+</FrameLayout>
