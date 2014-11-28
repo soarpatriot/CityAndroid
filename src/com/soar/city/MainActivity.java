@@ -7,20 +7,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class MainActivity extends Activity{
       
 	private WebView webView;  
 	private ValueCallback<Uri> mUploadMessage;
-    private ProgressBar circleProgressBar;  
+    //private ProgressBar circleProgressBar;  
     private LinearLayout loadeyLayout;
+    private LinearLayout error_tip_layout;
+    //private TextView netWorkTipTxtView;
+    private Button reload_btn;
 	private final static int FILECHOOSER_RESULTCODE = 1;
 	
 	@Override  
@@ -29,17 +33,29 @@ public class MainActivity extends Activity{
 		setContentView(R.layout.activity_main);
 		webView = (WebView) findViewById(R.id.merchant_staff);  
 		loadeyLayout = (LinearLayout)findViewById(R.id.fullscreen_loading_indicator);  
+		error_tip_layout = (LinearLayout)findViewById(R.id.error_tip_layout); 
+		reload_btn = (Button) findViewById(R.id.reload_btn);
 		
         webView.getSettings().setJavaScriptEnabled(true);//设置使用够执行JS脚本  
         webView.getSettings().setBuiltInZoomControls(false);
         webView.setWebChromeClient(new MyWebClient());
         webView.loadUrl("http://www.yuxian.me/");  
+        reload_btn.setOnClickListener(new OnClickListener()  
+        {         
+            public void onClick(View v)  
+            {   
+            	error_tip_layout.setVisibility(View.GONE);
+            	webView.loadUrl("http://www.yuxian.me/");  
+            }  
+        });
+        
         webView.setWebViewClient(new WebViewClient(){
         	
         	@Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 // TODO Auto-generated method stub
         		loadeyLayout.setVisibility(View.VISIBLE);  
+        		webView.setVisibility(View.VISIBLE);
                 super.onPageStarted(view, url, favicon);
             }
 
@@ -60,7 +76,9 @@ public class MainActivity extends Activity{
             @Override   //转向错误时的处理  
             public void onReceivedError(WebView view, int errorCode,  
                     String description, String failingUrl) {  
-                // TODO Auto-generated method stub  
+                // TODO Auto-generated method stub
+            	error_tip_layout.setVisibility(View.VISIBLE);
+            	webView.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, R.string.network_error, Toast.LENGTH_SHORT).show();  
             }  
         });  

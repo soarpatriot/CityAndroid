@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
      
-    <string name="network_error">请检查你的网络</string>
+    <string name="network_error">网络异常，请检查您的网络连接</string>
     <string name="app_name">蔚县@我</string>
     <string name="loading">加载中，请稍等</string>
 

@@ -1,6 +1,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 	<RelativeLayout
@@ -13,10 +14,30 @@
 	        android:id="@+id/merchant_staff"  
 	        android:layout_width="match_parent"  
 	        android:layout_height="match_parent" />  
-	        
+ 
 	    
 	
 	</RelativeLayout>
+	<LinearLayout
+	    android:gravity="center_vertical|center_horizontal"
+	    android:orientation="vertical"
+	    android:id="@+id/error_tip_layout"
+	    android:visibility="gone"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
+	    <TextView 
+	        android:layout_gravity="center_vertical|center_horizontal"
+	        android:id="@+id/network_tip"  
+	        android:layout_width="wrap_content"  
+	        android:layout_height="wrap_content"
+	        android:text="@string/network_error"
+	        android:padding="30dip"
+	        android:textColor="@color/red"/>   
+	    <Button android:id="@+id/reload_btn" 
+			    android:text="重新加载..." 
+			    android:layout_width="wrap_content"   
+			    android:layout_height="wrap_content"/> 
+	</LinearLayout>
     <LinearLayout
 	    android:gravity="center_vertical|center_horizontal"
 	    android:orientation="horizontal"
